@@ -61,4 +61,4 @@ typings/
 .next
 
 #kakao talk parser test result folder
-server/tools/parsor_test/result/
+server/tools/parsor_test/result/*
