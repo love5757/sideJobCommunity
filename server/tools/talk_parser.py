@@ -80,11 +80,20 @@ def find_price(content):
 def data_save(data):
     #윈도우 파일 저장시 문제가 되는 부분을 걸러냄. test 용이기때문에 실제로는 필요없음
     name = re.sub("[?|:|<|>|*|\|\"|/|[|]|]","",data['name'])
-    filename = os.path.join(dirname, "./parser_test/result/")
+    resultdir = os.path.join(dirname, "./parser_test/result/")
+
+    try:
+        if not(os.path.isdir(resultdir)):
+            os.makedirs(os.path.join(resultdir))
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            print("Failed to create directory!!!!!")
+            raise
+
     if len(data['content']) < 100 and not check_content(data['content']):
-        w_f = codecs.open(filename+"[x]%s_%s_.txt" % (data['date'],name),'w','utf-8')
+        w_f = codecs.open(resultdir+"[x]%s_%s_.txt" % (data['date'],name),'w','utf-8')
     else :
-        w_f = codecs.open(filename+"[o]%s_%s.txt" % (data['date'],name),'w','utf-8')
+        w_f = codecs.open(resultdir+"[o]%s_%s.txt" % (data['date'],name),'w','utf-8')
 
     content = "name : %s\n" % (data['name'])
     content += "title : %s\n" % (data['title'])
