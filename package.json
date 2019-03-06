@@ -1,0 +1,19 @@
+{
+  "name": "sidejobcommunity",
+  "version": "1.0.0",
+  "description": "사이드잡 커뮤니티 프로젝트",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/love5757/sideJobCommunity.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/love5757/sideJobCommunity/issues"
+  },
+  "homepage": "https://github.com/love5757/sideJobCommunity#readme"
+}
