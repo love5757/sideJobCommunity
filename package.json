@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/love5757/sideJobCommunity/issues"
   },
-  "homepage": "https://github.com/love5757/sideJobCommunity#readme"
+  "homepage": "https://github.com/love5757/sideJobCommunity#readme",
+  "dependencies": {
+    "vue": "^2.6.8"
+  }
 }
