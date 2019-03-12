@@ -1,3 +1,9 @@
+import sys
+import io
+
+sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding = 'utf-8')
+sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding = 'utf-8')
+
 import re
 import os
 import codecs
@@ -33,6 +39,8 @@ def data_save(data):
                 for url in data[name] :
                     content += "\t%s \n" % (url)
             else:
+                if name == "content":
+                    continue
                 content += "%s : %s\n" % (name, data[name])
 
     w_f.write(content)
@@ -161,6 +169,14 @@ def find_price(line):
 
 def find_company(line) :
     filter = make_filter("회사명")
+    if('인터마인드' in line):
+        print(line)
+        company = filter.search(line)
+        print(company)
+        if company :
+            company = company.group(3).lstrip()
+            print(company)
+            return company
     company = filter.search(line)
     if company :
         company = company.group(3).lstrip()
@@ -241,11 +257,9 @@ def kakao_chat(file_path):
             data['datetime'] = make_datetime(date, time_ret)
             data['name'] = name_ret.lstrip()
             data['title'] = start_line.lstrip()
-            data['content'] = start_line.lstrip()
-            continue
+            line = start_line.lstrip()
 
-
-        if not data['title'] : data['title'] = line.lstrip()
+        if not data['title'] : data['title'] = line
         if not data['kakao_id'] : data['kakao_id'] = find_kakao_id(line)
         if not data['phone'] : data['phone'] = find_phone(line)
         if not data['price'] : data['price'] = find_price(line)

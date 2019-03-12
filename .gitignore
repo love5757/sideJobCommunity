@@ -60,5 +60,5 @@ typings/
 # next.js build output
 .next
 
-#kakao talk parser test result folder
-server/tools/parsor_test/result/*
+#kakaotalk parser test result folder
+server/tools/parser_test/result/
