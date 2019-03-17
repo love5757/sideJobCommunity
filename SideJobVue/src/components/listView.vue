@@ -2,13 +2,13 @@
     <div id="app">
         <ul>
             <li>
-                <v-app id="inspire">
+                <v-app>
                 <v-layout>
                         <v-card>
                             <v-img class="blue--text" :src="img_src">
-                                <v-container fill-height fluid>
-                                    <v-layout fill-height>
-                                        <v-flex xs12 align-end flexbox>
+                                <v-container>
+                                    <v-layout >
+                                        <v-flex>
                                             <span class="headline">{{ title }}</span>
                                         </v-flex>
                                     </v-layout>
@@ -30,50 +30,249 @@
                 </v-app>
             </li>
             <li>
-                    <v-app id="inspire">
-                    <v-layout>
-                            <v-card>
-                                <v-img class="black--text" :src="img_src">
-                                    <v-container fill-height fluid>
-                                        <v-layout fill-height>
-                                            <v-flex xs12 align-end flexbox>
-                                                <span class="headline">{{ title }}</span>
-                                            </v-flex>
-                                        </v-layout>
-                                    </v-container>
-                                </v-img>
-                                <v-card-title>
-                                    <div>
-                                        <span class="grey--text">{{ name }}</span><br>
-                                        <span>{{ title }}</span><br>
-                                        <span>{{ content }}</span>
-                                    </div>
-                                </v-card-title>
-                                <v-card-actions>
-                                    <v-btn text color="orange">공유</v-btn>
-                                    <v-btn text color="red">더 보기</v-btn>
-                                </v-card-actions>
-                            </v-card>
-                        </v-layout>
-                    </v-app>
-                </li>
+                <v-app>
+                <v-layout>
+                        <v-card>
+                            <v-img class="blue--text" :src="img_src">
+                                <v-container>
+                                    <v-layout >
+                                        <v-flex>
+                                            <span class="headline">{{ title }}</span>
+                                        </v-flex>
+                                    </v-layout>
+                                </v-container>
+                            </v-img>
+                            <v-card-title>
+                                <div>
+                                    <span class="grey--text">{{ name }}</span><br>
+                                    <span>{{ title }}</span><br>
+                                    <span>{{content}}</span>
+                                </div>
+                            </v-card-title>
+                            <v-card-actions>
+                                <v-btn text color="orange">공유</v-btn>
+                                <v-btn text color="red">더 보기</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-layout>
+                </v-app>
+            </li>
+            <li>
+                <v-app>
+                <v-layout>
+                        <v-card>
+                            <v-img class="blue--text" :src="img_src">
+                                <v-container>
+                                    <v-layout >
+                                        <v-flex>
+                                            <span class="headline">{{ title }}</span>
+                                        </v-flex>
+                                    </v-layout>
+                                </v-container>
+                            </v-img>
+                            <v-card-title>
+                                <div>
+                                    <span class="grey--text">{{ name }}</span><br>
+                                    <span>{{ title }}</span><br>
+                                    <span>{{content}}</span>
+                                </div>
+                            </v-card-title>
+                            <v-card-actions>
+                                <v-btn text color="orange">공유</v-btn>
+                                <v-btn text color="red">더 보기</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-layout>
+                </v-app>
+            </li>
+            <li>
+                <v-app>
+                <v-layout>
+                        <v-card>
+                            <v-img class="blue--text" :src="img_src">
+                                <v-container>
+                                    <v-layout >
+                                        <v-flex>
+                                            <span class="headline">{{ title }}</span>
+                                        </v-flex>
+                                    </v-layout>
+                                </v-container>
+                            </v-img>
+                            <v-card-title>
+                                <div>
+                                    <span class="grey--text">{{ name }}</span><br>
+                                    <span>{{ title }}</span><br>
+                                    <span>{{content}}</span>
+                                </div>
+                            </v-card-title>
+                            <v-card-actions>
+                                <v-btn text color="orange">공유</v-btn>
+                                <v-btn text color="red">더 보기</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-layout>
+                </v-app>
+            </li>
+            <li>
+                <v-app>
+                <v-layout>
+                        <v-card>
+                            <v-img class="blue--text" :src="img_src">
+                                <v-container>
+                                    <v-layout >
+                                        <v-flex>
+                                            <span class="headline">{{ title }}</span>
+                                        </v-flex>
+                                    </v-layout>
+                                </v-container>
+                            </v-img>
+                            <v-card-title>
+                                <div>
+                                    <span class="grey--text">{{ name }}</span><br>
+                                    <span>{{ title }}</span><br>
+                                    <span>{{content}}</span>
+                                </div>
+                            </v-card-title>
+                            <v-card-actions>
+                                <v-btn text color="orange">공유</v-btn>
+                                <v-btn text color="red">더 보기</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-layout>
+                </v-app>
+            </li>
+            <li>
+                <v-app>
+                <v-layout>
+                        <v-card>
+                            <v-img class="blue--text" :src="img_src">
+                                <v-container>
+                                    <v-layout >
+                                        <v-flex>
+                                            <span class="headline">{{ title }}</span>
+                                        </v-flex>
+                                    </v-layout>
+                                </v-container>
+                            </v-img>
+                            <v-card-title>
+                                <div>
+                                    <span class="grey--text">{{ name }}</span><br>
+                                    <span>{{ title }}</span><br>
+                                    <span>{{content}}</span>
+                                </div>
+                            </v-card-title>
+                            <v-card-actions>
+                                <v-btn text color="orange">공유</v-btn>
+                                <v-btn text color="red">더 보기</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-layout>
+                </v-app>
+            </li>
+            <li>
+                <v-app>
+                <v-layout>
+                        <v-card>
+                            <v-img class="blue--text" :src="img_src">
+                                <v-container>
+                                    <v-layout >
+                                        <v-flex>
+                                            <span class="headline">{{ title }}</span>
+                                        </v-flex>
+                                    </v-layout>
+                                </v-container>
+                            </v-img>
+                            <v-card-title>
+                                <div>
+                                    <span class="grey--text">{{ name }}</span><br>
+                                    <span>{{ title }}</span><br>
+                                    <span>{{content}}</span>
+                                </div>
+                            </v-card-title>
+                            <v-card-actions>
+                                <v-btn text color="orange">공유</v-btn>
+                                <v-btn text color="red">더 보기</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-layout>
+                </v-app>
+            </li>
+            <li>
+                <v-app>
+                <v-layout>
+                        <v-card>
+                            <v-img class="blue--text" :src="img_src">
+                                <v-container>
+                                    <v-layout >
+                                        <v-flex>
+                                            <span class="headline">{{ title }}</span>
+                                        </v-flex>
+                                    </v-layout>
+                                </v-container>
+                            </v-img>
+                            <v-card-title>
+                                <div>
+                                    <span class="grey--text">{{ name }}</span><br>
+                                    <span>{{ title }}</span><br>
+                                    <span>{{content}}</span>
+                                </div>
+                            </v-card-title>
+                            <v-card-actions>
+                                <v-btn text color="orange">공유</v-btn>
+                                <v-btn text color="red">더 보기</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-layout>
+                </v-app>
+            </li>
+            <li>
+                <v-app>
+                <v-layout>
+                        <v-card>
+                            <v-img class="blue--text" :src="img_src">
+                                <v-container>
+                                    <v-layout >
+                                        <v-flex>
+                                            <span class="headline">{{ title }}</span>
+                                        </v-flex>
+                                    </v-layout>
+                                </v-container>
+                            </v-img>
+                            <v-card-title>
+                                <div>
+                                    <span class="grey--text">{{ name }}</span><br>
+                                    <span>{{ title }}</span><br>
+                                    <span>{{content}}</span>
+                                </div>
+                            </v-card-title>
+                            <v-card-actions>
+                                <v-btn text color="orange">공유</v-btn>
+                                <v-btn text color="red">더 보기</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-layout>
+                </v-app>
+            </li>
+            
         </ul>
     </div>
 </template>
 <style>
-       ul {
+ul {
     list-style:none;
     margin:0;
     padding:0;
 }
 li {
-    height: 50px;
     margin: 0 0 0 0;
     padding: 0 0 0 0;
     border : 0;
     float: left;
-    padding-top: 2%;
-    padding-left: 4%;
+    padding-top: 4%;
+    padding-left: 4%;   
+}
+.application--wrap {
+    min-height:10vh;
 }
 </style>
 <script>
