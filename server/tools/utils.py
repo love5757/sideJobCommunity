@@ -1,7 +1,7 @@
-import uuid, binascii
+import uuid
 
 def make_uid():
-    return uuid.uuid4().bytes
+    return str(uuid.uuid4()).replace("-","",4)
 
 def data_reset():
     data = {
@@ -19,9 +19,11 @@ def data_reset():
     'url_list' : [],
     'price' : '',
     'location' : '',
+    'from_home' : '',
     'period' : '',
     'content' : '',
     'category' : '',
+    'more_detail' : '',
     'matched' : [0]
     }
     return data
@@ -39,3 +41,6 @@ def check_content(content):
     if any(word in content for word in filter):
         return True
     return False
+
+if __name__ == '__main__':
+    test = make_uid()

@@ -1,7 +1,7 @@
 import re
 
 def make_filter(words,last_group=".+"):
-    return re.compile("(%s)([:| |\-|\(|\=]*)(%s)" % (words,last_group))
+    return re.compile("(%s)[ |]?:([| |\-|\=])(%s)" % (words,last_group))
 
 #날짜알림줄 확인
 def find_date(line):
@@ -25,6 +25,8 @@ def find_msg_start(line):
         m = int(start_line.group(4))
         if start_line.group(2) == '오후' :
             h += 12
+        if h == 24:
+            h = 0
         time = "%02d:%02d:00" % (h,m)
         start_line = start_line.group(5)
         return name, time, start_line
@@ -79,8 +81,16 @@ def find_location(line, matched) :
         matched[0] += 1
         return location
 
+def find_work_from_home(line, matched) :
+    filter = make_filter("[자|재][ |]*택[ |]*여[ |]*부")
+    work_home = filter.search(line)
+    if work_home :
+        work_home = work_home.group(3).strip()
+        matched[0] += 1
+        return work_home
+
 def find_stock_option(line, matched) :
-    filter = make_filter("스톡옵션 여부|스톡옵션")
+    filter = make_filter("스[ |]*톡[ |]*옵[ |]*션[ |]*여[ |]*부|스[ |]*톡[ |]*옵[ |]*션")
     stock_option = filter.search(line)
     if stock_option :
         stock_option = stock_option.group(3).lstrip()
@@ -88,7 +98,7 @@ def find_stock_option(line, matched) :
         return stock_option
 
 def find_skill(line, matched) :
-    filter = make_filter("필요스킬|업무 상세 / 필요스킬")
+    filter = make_filter("필[ |]*요[ |]*스[ |]*킬|업[ |]*무[ |]*상[ |]*세[ |]*/[ |]*필[ |]*요[ |]*스[ |]*킬")
     skill = filter.search(line)
     if skill :
         skill = skill.group(3).lstrip()
@@ -96,7 +106,7 @@ def find_skill(line, matched) :
         return skill
 
 def find_sector(line, matched) :
-    filter = make_filter("업종|업무|직무")
+    filter = make_filter("업[ |]*종|업[ |]*무|직[ |]*무")
     sector = filter.search(line)
     if sector :
         sector = sector.group(3).lstrip()
@@ -104,7 +114,7 @@ def find_sector(line, matched) :
         return sector
 
 def find_period(line, matched) :
-    filter = make_filter("기간")
+    filter = make_filter("기[ |]*간")
     period = filter.search(line)
     if period :
         period = period.group(3).lstrip()
@@ -112,7 +122,7 @@ def find_period(line, matched) :
         return period
 
 def find_years(line, matched) :
-    filter = make_filter("구인 연차")
+    filter = make_filter("구[ |]*인[ |]*연[ |]*차")
     years = filter.search(line)
     if years :
         years = years.group(3).lstrip()
@@ -121,7 +131,8 @@ def find_years(line, matched) :
 
 #email 찾기
 def find_email(line):
-    email_filter = re.compile("[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}")
+    email_filter = re.compile("[0-9a-zA-Z]+([-_.]*/[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}")
+
     email = email_filter.search(line)
     if email :
         email = email_filter.search(line).group()
@@ -129,7 +140,7 @@ def find_email(line):
 
 #연락처 찾기
 def find_phone(line):
-    phone_filter = re.compile("(\+82\-)?[0-9]{2,3}\b?([-|_|.|,|–]+)\b?[0-9]{3,4}\b?([-|_|.|,|–]+)\b?[0-9]{4}")
+    phone_filter = re.compile("(\+[0-9]*[| ]*([-|_|.|,|–]+)[| ]*)?[0-9]{2,3}[| ]*([-|_|.|,|–]+)[| ]*[0-9]{3,4}[| ]*([-|_|.|,|–]+)[| ]*[0-9]{4}")
     phone = phone_filter.search(line)
     if phone :
         phone = phone.group()

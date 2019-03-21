@@ -10,7 +10,7 @@ import codecs
 from talk_parser import find_url, find_date, find_years, find_email, find_skill, \
                 find_price, find_phone, find_sector, find_period, find_company,\
                 find_location, find_kakao_id, find_msg_start, find_ignore_line,\
-                find_stock_option
+                find_stock_option, find_work_from_home
 from utils import make_datetime, data_reset
 from db import save_data
 
@@ -51,6 +51,7 @@ def talk_parser(file="parser_test\source.txt"):
     time = ""
     for line in lines:
         #초대 메시지 무시
+        line = line.rstrip('\n')
         if find_ignore_line(line) : continue
 
         date_ret = find_date(line)
@@ -70,7 +71,7 @@ def talk_parser(file="parser_test\source.txt"):
                 if data['name'] == name_ret :
                     data['content'] += start_line
                     continue
-                data['url_list'] = find_url(data['content'])
+                data['url_lidst'] = find_url(data['content'])
                 data['email'] = find_email(data['content'])
                 save_data(data)
                 data = data_reset()
@@ -78,7 +79,7 @@ def talk_parser(file="parser_test\source.txt"):
             data['name'] = name_ret.lstrip()
             line = start_line.lstrip()
 
-        if not data['title'] : data['title'] = line
+        if not data['title'] : data['title'] = line[:149]
         if not data['kakao_id'] : data['kakao_id'] = find_kakao_id(line)
         if not data['phone'] : data['phone'] = find_phone(line)
         if not data['price'] : data['price'] = find_price(line, data['matched'])
@@ -89,6 +90,7 @@ def talk_parser(file="parser_test\source.txt"):
         if not data['sector'] : data['sector'] = find_sector(line, data['matched'])
         if not data['period'] : data['period'] = find_period(line, data['matched'])
         if not data['years'] : data['years'] = find_years(line, data['matched'])
+        if not data['from_home'] : data['from_home'] = find_work_from_home(line, data['matched'])
 
         data['content'] += line
 
