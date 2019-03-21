@@ -31,7 +31,7 @@ def duplicate_msg(con, name, title, datetime):
             res = cur.fetchall()
             for writer in res:
                 if name == writer['kakao_name']:
-                    print("already Posted Recruit")
+                    #print("already Posted Recruit")
                     cur.close
                     return True
     cur.close
@@ -206,7 +206,8 @@ def set_rating(con, r_id, merit):
 
 def save_data(data):
 
-    if len(data['content']) < 150 and not check_content(data['content']):
+    if (len(data['content']) < 150 and data['matched'][0] == 0) or not check_content(data['content']):
+        print(data['content'])
         return
 
     con = make_db_con()
