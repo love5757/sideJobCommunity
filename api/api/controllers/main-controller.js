@@ -40,3 +40,11 @@ exports.loginPost = function(args, res, next) {
     return res.end(JSON.stringify(response));
   }
 };
+
+exports.listInsert = function(args, res, next) {
+  console.log(args.body)
+
+  var response = { message: body };
+  res.writeHead(200, { "Content-Type": "application/json" });
+  return res.end(JSON.stringify(response));
+};
