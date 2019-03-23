@@ -44,6 +44,19 @@ exports.loginPost = function(args, res, next) {
 exports.listInsert = function(args, res, next) {
   console.log(args.body)
 
+  var conn = require('db_conn');
+  
+  conn.connect();
+
+  conn.query('SELECT * from Persons', function(err, rows, fields) {
+    if (!err)
+      console.log('The solution is: ', rows);
+    else
+      console.log('Error while performing Query.', err);
+  });
+
+  conn.end();
+
   var response = { message: body };
   res.writeHead(200, { "Content-Type": "application/json" });
   return res.end(JSON.stringify(response));
