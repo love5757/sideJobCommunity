@@ -62,3 +62,6 @@ typings/
 
 #kakaotalk parser test result folder
 server/tools/parser_test/result/
+
+#python virtual Environment
+venv/
