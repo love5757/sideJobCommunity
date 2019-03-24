@@ -1,12 +1,9 @@
 "use strict";
 
-exports.db_conn = function() {
-  var mysql      = require('mysql');
-  var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'manager',
-    password : 'Javascript',
-    port     : 3306,
-    database : 'sidejob_proj'
-  });
+module.exports = {
+  host     : 'localhost',
+  user     : 'root',
+  password : 'password123',
+  port     : 3306,
+  database : 'mysite'
 };

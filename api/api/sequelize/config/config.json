@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "root",
+    "password": "password123",
+    "database": "sidejob_proj",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}

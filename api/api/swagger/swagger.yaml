@@ -109,7 +109,7 @@ paths:
     x-swagger-router-controller: main-controller
     post:
       operationId: listInsert
-      description: "Insert a list"
+      description: "Insert a list2"
       parameters:
         - name: value
           in: body
@@ -126,6 +126,26 @@ paths:
           schema:
             $ref: "#/definitions/Error"
 
+  /listInsert2:
+      x-swagger-router-controller: main-controller
+      post:
+        operationId: listInsert2
+        description: "Insert a list2"
+        parameters:
+          - name: value
+            in: body
+            required: true
+            schema:
+              $ref: "#/definitions/Authentication"
+        responses:
+          "200":
+            description: "Success"
+            schema:
+              $ref: "#/definitions/Token"
+          "403":
+            description: "Access Denied"
+            schema:
+              $ref: "#/definitions/Error"
 
 definitions:
   Authentication:

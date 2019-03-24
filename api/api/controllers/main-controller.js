@@ -1,4 +1,5 @@
 var auth = require("../helpers/auth");
+const dbConfig = require('../helpers/db-config');
 
 exports.unprotectedGet = function(args, res, next) {
   var response = { message: "My resource!" };
@@ -41,23 +42,30 @@ exports.loginPost = function(args, res, next) {
   }
 };
 
+// DB Connection For Query
 exports.listInsert = function(args, res, next) {
-  console.log(args.body)
-
-  var conn = require('db_conn');
   
-  conn.connect();
+  var mysql = require('mysql');
+  var connection = mysql.createConnection(dbConfig); 
 
-  conn.query('SELECT * from Persons', function(err, rows, fields) {
-    if (!err)
-      console.log('The solution is: ', rows);
-    else
+  connection.query('SELECT * from board LIMIT 2;', function(err, rows, fields) {
+    if (!err){
+      return res.end(JSON.stringify(rows));
+    } else {
       console.log('Error while performing Query.', err);
+    }
+  });
+};
+
+// DB Connection For ORM
+exports.listInsert2 = function(args, res, next) {
+  var Company = require('../sequelize/models').Company;
+
+  Company.create({
+    comp_id: 'bbbb-aaaa-aaaaaa',
+    name: 'a_company',
+    location: 'Korea'
   });
 
-  conn.end();
-
-  var response = { message: body };
-  res.writeHead(200, { "Content-Type": "application/json" });
-  return res.end(JSON.stringify(response));
+  return res.end(JSON.stringify(args.body));
 };
