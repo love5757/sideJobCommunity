@@ -5,8 +5,12 @@
     "database": "sidejob_test",
     "host": "soorokim.duckdns.org",
     "port": "19222",
-    "charset": "utf8",
-    "collate": "utf8_general_ci", 
+    "define" : {
+      "charset": "utf8mb4",
+      "dialectOptions": { 
+        "collate": "utf8mb4_unicode_ci" 
+      }
+    },
     "dialect": "mysql"
   },  
   "local": {

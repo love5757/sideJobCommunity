@@ -59,6 +59,7 @@ exports.listInsert = function(args, res, next) {
 
 // DB Connection For ORM
 exports.listInsert2 = function(args, res, next) {
+  res.writeHead(200, {'content-type':'text/html; charset=UTF-8'});
   var Company = require('../sequelize/models').Company;
 
   Company.findOne({
