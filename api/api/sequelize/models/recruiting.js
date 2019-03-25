@@ -3,12 +3,12 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('recruiting', {
     recr_id: {
-      type: DataTypes.INTEGER(11),
+      type: "BINARY(16)",
       allowNull: false,
       primaryKey: true
     },
     writer_id: {
-      type: DataTypes.CHAR(16),
+      type: "BINARY(16)",
       allowNull: false,
       references: {
         model: 'writer',
@@ -16,11 +16,19 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     type_id: {
-      type: DataTypes.CHAR(16),
+      type: "BINARY(16)",
       allowNull: false,
       references: {
         model: 'type',
         key: 'type_id'
+      }
+    },
+    comp_id: {
+      type: "BINARY(16)",
+      allowNull: false,
+      references: {
+        model: 'company',
+        key: 'comp_id'
       }
     },
     title: {
@@ -50,17 +58,8 @@ module.exports = function(sequelize, DataTypes) {
     is_delete: {
       type: DataTypes.INTEGER(4),
       allowNull: false
-    },
-    comp_id: {
-      type: DataTypes.CHAR(16),
-      allowNull: false,
-      references: {
-        model: 'company',
-        key: 'comp_id'
-      }
     }
   }, {
-    tableName: 'recruiting',
-    timestamps: false
+    tableName: 'recruiting'
   });
 };

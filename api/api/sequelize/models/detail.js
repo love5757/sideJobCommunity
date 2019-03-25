@@ -3,9 +3,13 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('detail', {
     recr_id: {
-      type: DataTypes.INTEGER(11),
+      type: "BINARY(16)",
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      references: {
+        model: 'recruiting',
+        key: 'recr_id'
+      }
     },
     stock_opt: {
       type: DataTypes.STRING(150),
@@ -36,15 +40,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     from_home: {
-      type: DataTypes.INTEGER(1),
-      allowNull: true
+      type: DataTypes.STRING(150),
+      allowNull: false
     },
     more_detail: {
       type: DataTypes.TEXT,
       allowNull: false
     }
   }, {
-    tableName: 'detail',
-    timestamps: false
+    tableName: 'detail'
   });
 };

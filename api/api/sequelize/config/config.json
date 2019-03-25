@@ -1,5 +1,12 @@
 {
   "development": {
+    "username": "manager",
+    "password": "Javascript",
+    "database": "sidejob_test",
+    "host": "soorokim.duckdns.org:19222",
+    "dialect": "mysql"
+  },  
+  "local": {
     "username": "root",
     "password": "password123",
     "database": "sidejob_proj",

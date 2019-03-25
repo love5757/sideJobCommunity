@@ -31,5 +31,11 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.Company = require('./company')(sequelize, Sequelize);
+db.Detail = require('./detail')(sequelize, Sequelize);
+db.Log = require('./log')(sequelize, Sequelize);
+db.Rating = require('./rating')(sequelize, Sequelize);
+db.Recruiting = require('./recruiting')(sequelize, Sequelize);
+db.Type = require('./type')(sequelize, Sequelize);
+db.Writer = require('./writer')(sequelize, Sequelize);
 
 module.exports = db;

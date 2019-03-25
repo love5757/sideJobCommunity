@@ -3,7 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('company', {
     comp_id: {
-      type: DataTypes.CHAR(16),
+      type: "BINARY(16)",
       allowNull: false,
       primaryKey: true
     },
@@ -16,7 +16,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   }, {
-    tableName: 'company',
-    timestamps: false
+    tableName: 'company'
   });
 };
