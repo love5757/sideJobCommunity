@@ -61,11 +61,11 @@ exports.listInsert = function(args, res, next) {
 exports.listInsert2 = function(args, res, next) {
   var Company = require('../sequelize/models').Company;
 
-  Company.create({
-    comp_id: 'bbbb-aaaa-aaaaaa',
-    name: 'a_company',
-    location: 'Korea'
+  Company.findOne({
+    where: { name: '미기재' }
+  }).then((value) => {
+    console.log('data: ', value.dataValues);
+    return res.end(JSON.stringify(value.dataValues));
   });
-
-  return res.end(JSON.stringify(args.body));
 };
+
