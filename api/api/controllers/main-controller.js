@@ -61,10 +61,10 @@ exports.listInsert = function(args, res, next) {
 exports.getRecruitList = function(args, res, next) {
   res.writeHead(200, {'content-type':'application/json; charset=UTF-8'});
   var condition = args.query.condition ? args.query.condition : '';
-  var Company = require('../sequelize/models').Company;
+  var Detail = require('../sequelize/models').Detail;
 
-  Company.findAll({
-    where: { name: condition }
+  Detail.findAll({
+    
   }).then((value) => {
     return res.end(JSON.stringify(value));
   });
