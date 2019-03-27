@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import listView from '@/components/listView'
+import listView1 from '@/components/listView1'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 
@@ -19,6 +20,12 @@ export default new Router({
       path: '/main',
       name: 'listView',
       component: listView
+    },
+    {
+      path: '/list',
+      name: 'listView1',
+      component: listView1
+
     }
   ]
 })
