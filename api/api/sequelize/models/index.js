@@ -29,6 +29,7 @@ Object.keys(db).forEach(function(modelName) {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+db.Op = Sequelize.Op;
 
 db.Company = require('./company')(sequelize, Sequelize);
 db.Detail = require('./detail')(sequelize, Sequelize);
@@ -37,5 +38,10 @@ db.Rating = require('./rating')(sequelize, Sequelize);
 db.Recruiting = require('./recruiting')(sequelize, Sequelize);
 db.Type = require('./type')(sequelize, Sequelize);
 db.Writer = require('./writer')(sequelize, Sequelize);
+
+db.Recruiting.belongsTo(db.Detail,  {foreignKey: 'recr_id',   targetKey: 'recr_id'});
+db.Recruiting.hasMany(db.Company,   {foreignKey: 'comp_id',   sourceKey: 'comp_id'});
+db.Recruiting.hasMany(db.Type,      {foreignKey: 'type_id',   sourceKey: 'type_id'});
+db.Recruiting.hasMany(db.Writer,    {foreignKey: 'writer_id', sourceKey: 'writer_id'});
 
 module.exports = db;

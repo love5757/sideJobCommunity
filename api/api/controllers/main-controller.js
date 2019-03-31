@@ -1,5 +1,11 @@
 var auth = require("../helpers/auth");
 const dbConfig = require('../helpers/db-config');
+const Op = require('../sequelize/models').Op;
+const Detail = require('../sequelize/models').Detail;
+const Recruiting = require('../sequelize/models').Recruiting;
+const Type = require('../sequelize/models').Type;
+const Writer = require('../sequelize/models').Writer;
+const Company = require('../sequelize/models').Company;
 
 exports.unprotectedGet = function(args, res, next) {
   var response = { message: "My resource!" };
@@ -17,29 +23,6 @@ exports.protected2Get = function(args, res, next) {
   var response = { message: "My protected resource for admins!" };
   res.writeHead(200, { "Content-Type": "application/json" });
   return res.end(JSON.stringify(response));
-};
-
-exports.loginPost = function(args, res, next) {
-  var role = args.swagger.params.role.value;
-  var username = args.body.username;
-  var password = args.body.password;
-
-  if (role != "user" && role != "admin") {
-    var response = { message: 'Error: Role must be either "admin" or "user"' };
-    res.writeHead(400, { "Content-Type": "application/json" });
-    return res.end(JSON.stringify(response));
-  }
-
-  if (username == "username" && password == "password" && role) {
-    var tokenString = auth.issueToken(username, role);
-    var response = { token: tokenString };
-    res.writeHead(200, { "Content-Type": "application/json" });
-    return res.end(JSON.stringify(response));
-  } else {
-    var response = { message: "Error: Credentials incorrect" };
-    res.writeHead(403, { "Content-Type": "application/json" });
-    return res.end(JSON.stringify(response));
-  }
 };
 
 // DB Connection For Query
@@ -61,12 +44,23 @@ exports.listInsert = function(args, res, next) {
 exports.getRecruitList = function(args, res, next) {
   res.writeHead(200, {'content-type':'application/json; charset=UTF-8'});
   var condition = args.query.condition ? args.query.condition : '';
-  var Detail = require('../sequelize/models').Detail;
 
-  Detail.findAll({
-    
+  const beforeDay = 60;
+  var cdateCondition = new Date(Date.parse(new Date()) - beforeDay * 1000 * 60 * 60 * 24);
+  cdateCondition = cdateCondition.getFullYear() + '-' + cdateCondition.getMonth() + 1 + '-' + cdateCondition.getDate();
+  
+  Recruiting.findAll({
+    where:{
+      cdate: {
+        [Op.gte]: cdateCondition
+      }
+    },
+    order:[['cdate', 'DESC']],
+    include: [{model: Detail,  attributes: ['stock_opt', 'skill', 'url', 'period', 'price', 'years', 'sector', 'from_home', 'more_detail']},
+              {model: Type,    attributes: ['type']},
+              {model: Writer,  attributes: ['kakao_id', 'kakao_name', 'email', 'phone']},
+              {model: Company, attributes: ['name', 'location']}]
   }).then((value) => {
     return res.end(JSON.stringify(value));
   });
 };
-
