@@ -9,4 +9,4 @@
     </div>
 
 </template>
-<script src="../scripts/data2.js"/>
+<script src="../scripts/data.js"/>

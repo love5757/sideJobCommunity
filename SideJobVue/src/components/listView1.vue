@@ -6,7 +6,7 @@
                 <v-app>
                 <v-layout>
                         <v-card>
-                            <v-img class="blue--text" :src="i.src" height="150px">
+                            <v-img class="blue--text" :src="img_src" height="150px">
                                 <v-container>
                                     <v-layout >
                                         <v-flex>
@@ -17,7 +17,7 @@
                             </v-img>
                             <v-card-title>
                                 <div>
-                                    <span>{{ i.name }}</span><br>
+                                    <span>{{ i.id }}</span><br>
                                     <span>{{ i.title }}</span><br>
                                     <span>{{ i.content }}</span>
                                 </div>
@@ -46,7 +46,7 @@ li {
     float: left;
     padding-top: 4%;
     padding-left: 4%;
-    height:"150px";
+    max-width: 300px; 
        
 }
 .application--wrap {

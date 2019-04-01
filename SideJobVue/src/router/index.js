@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import listView from '@/components/listView'
 import listView1 from '@/components/listView1'
 import test from '@/components/test'
 import Vuetify from 'vuetify'
@@ -19,11 +18,6 @@ export default new Router({
     },
     {
       path: '/main',
-      name: 'listView',
-      component: listView
-    },
-    {
-      path: '/list',
       name: 'listView1',
       component: listView1
 
