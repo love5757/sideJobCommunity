@@ -253,7 +253,6 @@
                     </v-layout>
                 </v-app>
             </li>
-            
         </ul>
     </div>
 </template>
@@ -269,7 +268,7 @@ li {
     border : 0;
     float: left;
     padding-top: 4%;
-    padding-left: 4%;   
+    padding-left: 4%;
 }
 .application--wrap {
     min-height:10vh;
