@@ -126,6 +126,17 @@ paths:
           schema:
             $ref: "#/definitions/Error"
 
+  /getRecruitDetail:
+    x-swagger-router-controller: main-controller
+    get:
+      operationId: getRecruitDetail
+      description: "Recruit Detail"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Resource"
+
   /getRecruitList:
     x-swagger-router-controller: main-controller
     get:
