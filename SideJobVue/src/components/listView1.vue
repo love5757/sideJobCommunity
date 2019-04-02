@@ -2,7 +2,7 @@
     <div id="app">
     <h1>회사들 목록</h1>
         <ul>
-            <li v-for="i in items">
+            <li v-for="i in items" :key="i.id">
                 <v-app>
                 <v-layout>
                         <v-card>
@@ -46,12 +46,10 @@ li {
     float: left;
     padding-top: 4%;
     padding-left: 4%;
-    max-width: 300px; 
-       
+    max-width: 300px;
 }
 .application--wrap {
     min-height:10vh;
 }
 </style>
 <script src="../scripts/data2.js"/>
-
