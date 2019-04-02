@@ -49,7 +49,7 @@ li {
     max-width: 300px;
 }
 .application--wrap {
-    min-height:10vh;
+    min-height:10vh !important;
 }
 </style>
 <script src="../scripts/data2.js"/>
