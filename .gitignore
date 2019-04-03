@@ -65,3 +65,4 @@ server/tools/parser_test/result/
 
 #python virtual Environment
 venv/
+/api/dist
