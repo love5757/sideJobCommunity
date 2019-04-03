@@ -6,6 +6,7 @@ const Recruiting = require('../sequelize/models').Recruiting;
 const Type = require('../sequelize/models').Type;
 const Writer = require('../sequelize/models').Writer;
 const Company = require('../sequelize/models').Company;
+const moment = require('moment');
 
 // DB Connection For Query
 exports.listInsert = function(args, res, next) {
@@ -51,7 +52,7 @@ exports.getRecruitList = function(args, res, next) {
 
   const beforeDay = 60;
   var cdateCondition = new Date(Date.parse(new Date()) - beforeDay * 1000 * 60 * 60 * 24);
-  cdateCondition = cdateCondition.getFullYear() + '-' + (cdateCondition.getMonth() + 1) + '-' + cdateCondition.getDate();
+  cdateCondition = moment(cdateCondition.getFullYear() + '-' + (cdateCondition.getMonth() + 1) + '-' + cdateCondition.getDate(), 'YYYY-MM-DD');
   
   Recruiting.findAll({
     attributes: ['recr_id', 'title', 'content', 'hit', 'cdate', 'udate', 'ddate', 'is_delete'],
@@ -66,16 +67,19 @@ exports.getRecruitList = function(args, res, next) {
               {model: Writer,  attributes: ['kakao_id', 'kakao_name', 'email', 'phone']},
               {model: Company, attributes: ['name', 'location']}]
   }).then((value) => {
-    // value.map(v => {
-    //   v[0].recr_id.data = 1;
-    //   return v;
-    // })
+    value = value.map(v => {
+      obj = {  dataValues: { recr_id: toHexString( Object.values(v.dataValues.recr_id)) }};
+      v.dataValues.recr_id = toHexString( Object.values(v.dataValues.recr_id));
+      debugger;
+      return Object.assign(obj, v);
+    })
+    console.log(value)
     return res.end(JSON.stringify(value));
   });
-
-  function hexToString(byteArray) {
-    return Array.from(byteArray, function(byte) {
-      return ('0' + (byte & 0xFF).toString(16)).slice(-2);
-    }).join('')
-  }
 };
+
+function toHexString(byteArray) {
+  return Array.from(byteArray, function(byte) {
+    return ('0' + (byte & 0xFF).toString(16)).slice(-2);
+  }).join('')
+}
