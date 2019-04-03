@@ -7,7 +7,7 @@ export default {
     }
   },
   created () {
-    this.$axios.get('https://jsonplaceholder.typicode.com/posts')
+    this.$axios.get('http://soorokim.duckdns.org:19223/api/getRecruitList')
       .then((response) => {
         console.log(response.data + 'HELLLP')
         this.items = response.data
