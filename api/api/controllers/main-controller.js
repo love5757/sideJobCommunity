@@ -67,14 +67,11 @@ exports.getRecruitList = function(args, res, next) {
               {model: Writer,  attributes: ['kakao_id', 'kakao_name', 'email', 'phone']},
               {model: Company, attributes: ['name', 'location']}]
   }).then((value) => {
-    value = value.map(v => {
-      obj = {  dataValues: { recr_id: toHexString( Object.values(v.dataValues.recr_id)) }};
+    var arr = value.map(v => {
       v.dataValues.recr_id = toHexString( Object.values(v.dataValues.recr_id));
-      debugger;
-      return Object.assign(obj, v);
+      return v
     })
-    console.log(value)
-    return res.end(JSON.stringify(value));
+    return res.end(JSON.stringify(arr));
   });
 };
 
