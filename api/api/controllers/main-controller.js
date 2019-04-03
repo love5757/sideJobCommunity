@@ -44,7 +44,9 @@ exports.getRecruitDetail = function(args, res, next) {
 
 // DB Connection For ORM
 exports.getRecruitList = function(args, res, next) {
-  res.writeHead(200, {'content-type':'application/json; charset=UTF-8'});
+  res.writeHead(200, {'content-type':'application/json; charset=UTF-8',
+                      'Access-Control-Allow-Origin': '*'});
+                      
   var condition = args.query.condition ? args.query.condition : '';
 
   const beforeDay = 60;
@@ -71,7 +73,7 @@ exports.getRecruitList = function(args, res, next) {
     return res.end(JSON.stringify(value));
   });
 
-  function toHexString(byteArray) {
+  function hexToString(byteArray) {
     return Array.from(byteArray, function(byte) {
       return ('0' + (byte & 0xFF).toString(16)).slice(-2);
     }).join('')
