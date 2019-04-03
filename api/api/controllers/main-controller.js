@@ -7,24 +7,6 @@ const Type = require('../sequelize/models').Type;
 const Writer = require('../sequelize/models').Writer;
 const Company = require('../sequelize/models').Company;
 
-exports.unprotectedGet = function(args, res, next) {
-  var response = { message: "My resource!" };
-  res.writeHead(200, { "Content-Type": "application/json" });
-  return res.end(JSON.stringify(response));
-};
-
-exports.protectedGet = function(args, res, next) {
-  var response = { message: "My protected resource for admins and users!" };
-  res.writeHead(200, { "Content-Type": "application/json" });
-  return res.end(JSON.stringify(response));
-};
-
-exports.protected2Get = function(args, res, next) {
-  var response = { message: "My protected resource for admins!" };
-  res.writeHead(200, { "Content-Type": "application/json" });
-  return res.end(JSON.stringify(response));
-};
-
 // DB Connection For Query
 exports.listInsert = function(args, res, next) {
   
@@ -62,7 +44,9 @@ exports.getRecruitDetail = function(args, res, next) {
 
 // DB Connection For ORM
 exports.getRecruitList = function(args, res, next) {
-  res.writeHead(200, {'content-type':'application/json; charset=UTF-8'});
+  res.writeHead(200, {'content-type':'application/json; charset=UTF-8',
+                      'Access-Control-Allow-Origin': '*'});
+                      
   var condition = args.query.condition ? args.query.condition : '';
 
   const beforeDay = 60;
@@ -88,4 +72,10 @@ exports.getRecruitList = function(args, res, next) {
     // })
     return res.end(JSON.stringify(value));
   });
+
+  function hexToString(byteArray) {
+    return Array.from(byteArray, function(byte) {
+      return ('0' + (byte & 0xFF).toString(16)).slice(-2);
+    }).join('')
+  }
 };
