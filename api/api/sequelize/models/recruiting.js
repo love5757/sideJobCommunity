@@ -3,12 +3,12 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('recruiting', {
     recr_id: {
-      type: "BINARY(16)",
+      type: DataTypes.STRING(36),
       allowNull: false,
       primaryKey: true
     },
     writer_id: {
-      type: "BINARY(16)",
+      type: DataTypes.STRING(36),
       allowNull: false,
       references: {
         model: 'writer',
@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     type_id: {
-      type: "BINARY(16)",
+      type: DataTypes.STRING(36),
       allowNull: false,
       references: {
         model: 'type',
@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     comp_id: {
-      type: "BINARY(16)",
+      type: DataTypes.STRING(36),
       allowNull: false,
       references: {
         model: 'company',

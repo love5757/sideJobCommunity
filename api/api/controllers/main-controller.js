@@ -28,7 +28,7 @@ exports.listInsert = function(args, res, next) {
 exports.getRecruitDetail = function(args, res, next) {
   res.writeHead(200, {'content-type':'application/json; charset=UTF-8'});
   var id = args.query.id ? args.query.id : '';
-  
+
   Recruiting.findOne({
     attributes: ['title', 'content', 'hit', 'cdate', 'udate', 'ddate', 'is_delete'],
     where:{
@@ -67,16 +67,6 @@ exports.getRecruitList = function(args, res, next) {
               {model: Writer,  attributes: ['kakao_id', 'kakao_name', 'email', 'phone']},
               {model: Company, attributes: ['name', 'location']}]
   }).then((value) => {
-    var arr = value.map(v => {
-      v.dataValues.recr_id = toHexString( Object.values(v.dataValues.recr_id));
-      return v
-    })
-    return res.end(JSON.stringify(arr));
+    return res.end(JSON.stringify(value));
   });
 };
-
-function toHexString(byteArray) {
-  return Array.from(byteArray, function(byte) {
-    return ('0' + (byte & 0xFF).toString(16)).slice(-2);
-  }).join('')
-}

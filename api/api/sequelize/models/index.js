@@ -13,6 +13,7 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 fs
   .readdirSync(__dirname)
   .filter(function(file) {
+    console.log(file)
     return (file.indexOf(".") !== 0) && (file !== "index.js");
   })
   .forEach(function(file) {
@@ -33,7 +34,6 @@ db.Op = Sequelize.Op;
 
 db.Company = require('./company')(sequelize, Sequelize);
 db.Detail = require('./detail')(sequelize, Sequelize);
-db.Log = require('./log')(sequelize, Sequelize);
 db.Rating = require('./rating')(sequelize, Sequelize);
 db.Recruiting = require('./recruiting')(sequelize, Sequelize);
 db.Type = require('./type')(sequelize, Sequelize);
