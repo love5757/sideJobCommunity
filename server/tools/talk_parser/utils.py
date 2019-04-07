@@ -1,7 +1,7 @@
 import uuid
 
 def make_uid():
-    return str(uuid.uuid4()).replace("-","",4)
+    return str(uuid.uuid4())
 
 def data_reset():
     data = {

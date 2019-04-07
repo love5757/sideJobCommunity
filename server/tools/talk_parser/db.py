@@ -1,5 +1,4 @@
 import pymysql as db
-import binascii
 from utils import check_content, make_uid
 
 def make_db_con():
@@ -26,8 +25,8 @@ def duplicate_msg(con, name, title, datetime):
     recruits = cur.fetchall()
     if recruits :
         for rec in recruits:
-            sql = """select * from writer where writer_id=UNHEX(%s);"""
-            cur.execute(sql, binascii.hexlify(rec['writer_id']))
+            sql = """select * from writer where writer_id=%s;"""
+            cur.execute(sql, rec['writer_id'])
             res = cur.fetchall()
             for writer in res:
                 if name == writer['kakao_name']:
@@ -44,17 +43,18 @@ def get_type(con, flag):
         type = 'side'
     else :
         type = 'job'
-    cur = make_dic_cursor(con)
     try:
+        cur = make_dic_cursor(con)
         sql = """select type_id from type where type=%s;"""
         cur.execute(sql, (type))
         res = cur.fetchone()
         cur.close()
-        return binascii.hexlify(res['type_id'])
+        return res['type_id']
 
     except:
+        cur = make_dic_cursor(con)
         type_id = make_uid()
-        sql = """insert into `type` (`type_id`, `type`) values(UNHEX(%s), %s);"""
+        sql = """insert into `type` (`type_id`, `type`) values(%s, %s);"""
         cur.execute(sql,(type_id,type))
         con.commit()
         cur.close()
@@ -82,16 +82,17 @@ def get_company(con, comp, loca):
         sql = """select * from company where name=%s;"""
         cur.execute(sql, (comp))
         res = cur.fetchone()
-        _loca = res['location']
-        if len(_loca) < len(loca):
-            sql = """update company set location=%s where name=%s;"""
-            cur.execute(sql, (loca, comp))
-            con.commit()
+        if res:
+            _loca = res['location']
+            if len(_loca) < len(loca):
+                sql = """update company set location=%s where name=%s;"""
+                cur.execute(sql, (loca, comp))
+                con.commit()
 
     if res:
         comp_uid = res['comp_id']
         cur.close()
-        return binascii.hexlify(comp_uid)
+        return (comp_uid)
 
     cur.close()
     return False
@@ -104,7 +105,7 @@ def set_company(con, comp, loca):
         loca = no_write()
 
     comp_uid = make_uid()
-    sql = """insert into company(comp_id, name, location) values(UNHEX(%s), %s, %s);"""
+    sql = """insert into company(comp_id, name, location) values(%s, %s, %s);"""
     cur.execute(sql,(comp_uid,comp,loca))
     con.commit()
     cur.close()
@@ -141,7 +142,7 @@ def get_writer(con, k_id, k_name, email, phone):
             #print("anothter phone", phone, res['phone'])
            # raise ArithmeticError
         cur.close()
-        return binascii.hexlify(res['writer_id'])
+        return res['writer_id']
     cur.close()
     return False
 
@@ -155,7 +156,7 @@ def set_writer(con, k_id, k_name, email, phone):
         phone = no_write()
 
     writer_id = make_uid()
-    sql = """insert into `writer` (`writer_id`, `kakao_id`, `kakao_name`, `email`, `phone`) values(UNHEX(%s), %s, %s, %s, %s);"""
+    sql = """insert into `writer` (`writer_id`, `kakao_id`, `kakao_name`, `email`, `phone`) values(%s, %s, %s, %s, %s);"""
     cur.execute(sql,(writer_id,k_id, k_name, email, phone))
     con.commit()
     return writer_id
@@ -167,7 +168,7 @@ def set_recruit(con, w_id, t_id, c_id, title, content, cdate):
 
     sql = """insert into
     `recruiting` (`recr_id`,`writer_id`,`type_id`,`comp_id`,`title`,`content`,`hit`,`cdate`,`is_delete`)
-    values(UNHEX(%s), UNHEX(%s), UNHEX(%s), UNHEX(%s), %s, %s, 0, %s, 0);"""
+    values(%s, %s, %s, %s, %s, %s, 0, %s, 0);"""
 
     cur.execute(sql, (r_id,w_id, t_id, c_id, title, content, cdate))
     con.commit()
@@ -189,7 +190,7 @@ def set_detail(con, r_id, s_opt,skill, url, period, price, years, sec, f_h, deta
 
     sql = """insert into
     `detail` (`recr_id`,`stock_opt`,`skill`,`url`,`period`,`price`,`years`,`sector`,`from_home`, `more_detail`)
-    values(UNHEX(%s), %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
+    values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
 
     cur.execute(sql, (r_id, s_opt,skill, url, period, price, years, sec, f_h, detail))
     con.commit()
@@ -198,7 +199,7 @@ def set_detail(con, r_id, s_opt,skill, url, period, price, years, sec, f_h, deta
 def set_rating(con, r_id, merit):
     cur = make_dic_cursor(con)
     sql = """insert into `rating`
-    values(UNHEX(%s), %s);"""
+    values(%s, %s);"""
     cur.execute(sql, (r_id, merit[0]))
     con.commit()
     cur.close()

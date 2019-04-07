@@ -39,7 +39,7 @@ def data_save(data):
 
 
 
-def talk_parser(file="parser_test\source.txt"):
+def talk_parser(file="..\parser_test\source.txt"):
     dirname = os.path.dirname(__file__)
     filepath = os.path.join(dirname, file)
     f = codecs.open(filepath,'r','utf-8')
