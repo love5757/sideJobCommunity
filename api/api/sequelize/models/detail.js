@@ -3,7 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('detail', {
     recr_id: {
-      type: "BINARY(16)",
+      type: DataTypes.STRING(36),
       allowNull: false,
       primaryKey: true,
       references: {

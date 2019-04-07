@@ -2,7 +2,7 @@
   "development": {
     "username": "manager",
     "password": "Javascript",
-    "database": "sidejob_test",
+    "database": "sidejob_proj",
     "host": "soorokim.duckdns.org",
     "port": "19222",
     "define" : {
