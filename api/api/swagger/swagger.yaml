@@ -3,7 +3,7 @@ info:
   version: "0.0.1"
   title: kakao job
 host: localhost:3000
-basePath: /api
+basePath: /
 schemes:
   - http
   - https
