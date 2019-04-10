@@ -67,49 +67,11 @@ paths:
           schema:
             $ref: "#/definitions/Resource"
 
-  /protected:
-    x-swagger-router-controller: main-controller
-    get:
-      operationId: protectedGet
-      description: "Protected endpoint, only accessible to 'admins' and 'users'"
-      security:
-        - Bearer: []
-      x-security-scopes:
-        - admin
-        - user
-      responses:
-        "200":
-          description: "Success"
-          schema:
-            $ref: "#/definitions/Resource"
-        "403":
-          description: "Access Denied"
-          schema:
-            $ref: "#/definitions/Error"
-  /protected2:
-    x-swagger-router-controller: main-controller
-    get:
-      operationId: protected2Get
-      description: "Protected endpoint, only accessible to 'admins'"
-      security:
-        - Bearer: []
-      x-security-scopes:
-        - admin
-      responses:
-        "200":
-          description: "Success"
-          schema:
-            $ref: "#/definitions/Resource"
-        "403":
-          description: "Access Denied"
-          schema:
-            $ref: "#/definitions/Error"
-
-  /listInsert:
+  /insertCompany:
     x-swagger-router-controller: main-controller
     post:
-      operationId: listInsert
-      description: "Insert a list2"
+      operationId: insertCompany
+      description: "Insert a Company"
       parameters:
         - name: value
           in: body
@@ -125,6 +87,70 @@ paths:
           description: "Access Denied"
           schema:
             $ref: "#/definitions/Error"
+
+  /insertWriter:
+    x-swagger-router-controller: main-controller
+    post:
+      operationId: insertWriter
+      description: "Insert a Writer"
+      parameters:
+        - name: value
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/Authentication"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Token"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+
+  /insertType:
+    x-swagger-router-controller: main-controller
+    post:
+      operationId: insertType
+      description: "Insert a Type"
+      parameters:
+        - name: value
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/Authentication"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Token"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+
+  /insertRecruiting:
+    x-swagger-router-controller: main-controller
+    post:
+      operationId: insertRecruiting
+      description: "Insert a Recruiting"
+      parameters:
+        - name: value
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/Authentication"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Token"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+
 
   /getRecruitDetail:
     x-swagger-router-controller: main-controller
