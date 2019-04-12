@@ -31,105 +31,6 @@ produces:
   - application/json
 paths:
 
-  /login/{role}:
-    x-swagger-router-controller: main-controller
-    post:
-      operationId: loginPost
-      description: "Login with a particular role"
-      parameters:
-        - name: role
-          in: path
-          required: true
-          type: string
-        - name: authentication
-          in: body
-          required: true
-          schema:
-            $ref: "#/definitions/Authentication"
-      responses:
-        "200":
-          description: "Success"
-          schema:
-            $ref: "#/definitions/Token"
-        "403":
-          description: "Access Denied"
-          schema:
-            $ref: "#/definitions/Error"
-
-  /unprotected:
-    x-swagger-router-controller: main-controller
-    get:
-      operationId: unprotectedGet
-      description: "Unprotected endpoint"
-      responses:
-        "200":
-          description: "Success"
-          schema:
-            $ref: "#/definitions/Resource"
-
-  /insertCompany:
-    x-swagger-router-controller: main-controller
-    post:
-      operationId: insertCompany
-      description: "Insert a Company"
-      parameters:
-        - name: value
-          in: body
-          required: true
-          schema:
-            $ref: "#/definitions/Authentication"
-      responses:
-        "200":
-          description: "Success"
-          schema:
-            $ref: "#/definitions/Token"
-        "403":
-          description: "Access Denied"
-          schema:
-            $ref: "#/definitions/Error"
-
-  /insertWriter:
-    x-swagger-router-controller: main-controller
-    post:
-      operationId: insertWriter
-      description: "Insert a Writer"
-      parameters:
-        - name: value
-          in: body
-          required: true
-          schema:
-            $ref: "#/definitions/Authentication"
-      responses:
-        "200":
-          description: "Success"
-          schema:
-            $ref: "#/definitions/Token"
-        "403":
-          description: "Access Denied"
-          schema:
-            $ref: "#/definitions/Error"
-
-  /insertType:
-    x-swagger-router-controller: main-controller
-    post:
-      operationId: insertType
-      description: "Insert a Type"
-      parameters:
-        - name: value
-          in: body
-          required: true
-          schema:
-            $ref: "#/definitions/Authentication"
-      responses:
-        "200":
-          description: "Success"
-          schema:
-            $ref: "#/definitions/Token"
-        "403":
-          description: "Access Denied"
-          schema:
-            $ref: "#/definitions/Error"
-
   /insertRecruiting:
     x-swagger-router-controller: main-controller
     post:
@@ -178,12 +79,60 @@ definitions:
   Authentication:
     type: object
     properties:
-      username:
+      name:
         type: string
-        example: "username"
-      password:
+        example: "test"
+      location:
         type: string
-        example: "password"
+        example: "test"
+      kakao_id:
+        type: string
+        example: "test"
+      kakao_name:
+        type: string
+        example: "test"
+      email:
+        type: string
+        example: "test"
+      phone:
+        type: string
+        example: "test"
+      type:
+        type: string
+        example: "test"
+      title:
+        type: string
+        example: "test"
+      content:
+        type: string
+        example: "test"
+      stock_opt:
+        type: string
+        example: "test"
+      skill:
+        type: string
+        example: "test"
+      url:
+        type: string
+        example: "test"
+      period:
+        type: string
+        example: "test"
+      price:
+        type: string
+        example: "test"
+      years:
+        type: string
+        example: "test"
+      sector:
+        type: string
+        example: "test"
+      from_home:
+        type: string
+        example: "test"
+      more_detail:
+        type: string
+        example: "test"
   Resource:
     type: object
     properties:

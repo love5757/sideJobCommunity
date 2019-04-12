@@ -10,92 +10,45 @@ const Writer = require('../sequelize/models').Writer;
 const Company = require('../sequelize/models').Company;
 const moment = require('moment');
 
-// Insert Company
-exports.insertCompany = function(args, res, next) {
-  res.writeHead(200, {'content-type':'application/json; charset=UTF-8',
-                      'Access-Control-Allow-Origin': '*'});
-                      
-  var comp_id = args.body.comp_id || getUUID();
-  var name = args.body.name;
-  var location = args.body.location;
-
-  var obj = {
-    comp_id,
-    name,
-    location
-  }
-  
-  Company.create(obj).then(function(result) {
-    return res.end(JSON.stringify({status: 'success'}));
-  }).catch(function(err) {
-    return res.end(JSON.stringify({status: 'error', reason: err}));
-  });
-};
-
-// Insert Writer
-exports.insertWriter = function(args, res, next) {
-  res.writeHead(200, {'content-type':'application/json; charset=UTF-8',
-                      'Access-Control-Allow-Origin': '*'});
-
-  var writer_id = args.body.writer_id || getUUID();
-  var kakao_id = args.body.kakao_id;
-  var kakao_name = args.body.kakao_name;
-  var email = args.body.email;
-  var phone = args.body.phone;
-
-  var obj = {
-    writer_id,
-    kakao_id,
-    kakao_name,
-    email,
-    phone
-  }
-  
-  Writer.create(obj).then(function(result) {
-    return res.end(JSON.stringify({status: 'success'}));
-  }).catch(function(err) {
-    return res.end(JSON.stringify({status: 'error', reason: err}));
-  });
-};
-
-// Insert Type
-exports.insertType = function(args, res, next) {
-  res.writeHead(200, {'content-type':'application/json; charset=UTF-8',
-                      'Access-Control-Allow-Origin': '*'});
-
-  var type_id = args.body.type_id || getUUID();
-  var type = args.body.type;
-
-  var obj = {
-    type_id,
-    type
-  }
-  
-  Type.create(obj).then(function(result) {
-    return res.end(JSON.stringify({status: 'success'}));
-  }).catch(function(err) {
-    return res.end(JSON.stringify({status: 'error', reason: err}));
-  });
-};
 
 // Insert Recruiting
 exports.insertRecruiting = function(args, res, next) {
   res.writeHead(200, {'content-type':'application/json; charset=UTF-8',
                       'Access-Control-Allow-Origin': '*'});
   
+  var company = {
+    comp_id: getUUID(),
+    name: args.body.name,
+    location: args.body.location
+  }
+
+  var writer = {
+    writer_id: getUUID(),
+    kakao_id: args.body.kakao_id,
+    kakao_name: args.body.kakao_name,
+    email: args.body.email,
+    phone: args.body.phone
+  }
+
+  var type = {
+    type_id: getUUID(),
+    type: args.body.type
+  }
+
   var recruiting = {
-    recr_id: args.body.recr_id || getUUID(),
-    writer_id: args.body.writer_id || 'a64d31c576f94910885782b0cf733cd4',
-    type_id: args.body.type_id || '34f0179659504ce09120e29603d1ec46',
-    comp_id: args.body.comp_id || '8045798cf5a143efaf829c4154660f0a',
+    recr_id: getUUID(),
+    writer_id: writer.writer_id,
+    type_id: type.type_id,
+    comp_id: company.comp_id,
     title: args.body.title,
     content: args.body.content,
-    hit: args.body.hit || 0,
+    hit: 0,
     cdate: Sequelize.fn('NOW'),
-    is_delete: args.body.is_delete || 0
+    is_delete: 0
   }
 
   var detail = {
+    recr_id: recruiting.recr_id,
     stock_opt: args.body.stock_opt,
     skill: args.body.skill,
     url: args.body.url,
@@ -108,14 +61,17 @@ exports.insertRecruiting = function(args, res, next) {
   }
   
   sequelize.transaction({autocommit:false}).then(function(t) {
-    return Recruiting.create(recruiting, {transaction: t}).then(function(recruiting) {
-      detail.recr_id = recruiting.recr_id;
-  
-      return Detail.create(detail, {transaction: t}).then(function(detail) {
-        t.commit();
-        return res.end(JSON.stringify({status: 'success'}));
+    return Company.create(company, {transaction: t}).then(function(company) {
+      return Writer.create(writer, {transaction: t}).then(function(writer) {
+        return Type.create(type, {transaction: t}).then(function(type) {
+          return Recruiting.create(recruiting, {transaction: t}).then(function(recruiting) {
+            return Detail.create(detail, {transaction: t}).then(function(detail) {
+              t.commit();
+              return res.end(JSON.stringify({status: 'success'}));
+            })
+          })
+        })
       })
-  
     }).catch(function(err) {
       t.rollback();
       return res.end(JSON.stringify({status: 'error', reason: err}));
