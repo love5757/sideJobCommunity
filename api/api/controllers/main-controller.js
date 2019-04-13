@@ -1,5 +1,7 @@
 var auth = require("../helpers/auth");
 const dbConfig = require('../helpers/db-config');
+const Sequelize = require('../sequelize/models').Sequelize;
+const sequelize = require('../sequelize/models').sequelize;
 const Op = require('../sequelize/models').Op;
 const Detail = require('../sequelize/models').Detail;
 const Recruiting = require('../sequelize/models').Recruiting;
@@ -8,25 +10,80 @@ const Writer = require('../sequelize/models').Writer;
 const Company = require('../sequelize/models').Company;
 const moment = require('moment');
 
-// DB Connection For Query
-exports.listInsert = function(args, res, next) {
-  
-  var mysql = require('mysql');
-  var connection = mysql.createConnection(dbConfig); 
 
-  connection.query('SELECT * from board LIMIT 2;', function(err, rows, fields) {
-    if (!err){
-      return res.end(JSON.stringify(rows));
-    } else {
-      console.log('Error while performing Query.', err);
-    }
+// Insert Recruiting
+exports.insertRecruiting = function(args, res, next) {
+  res.writeHead(200, {'content-type':'application/json; charset=UTF-8',
+                      'Access-Control-Allow-Origin': '*'});
+  
+  var company = {
+    comp_id: getUUID(),
+    name: args.body.name,
+    location: args.body.location
+  }
+
+  var writer = {
+    writer_id: getUUID(),
+    kakao_id: args.body.kakao_id,
+    kakao_name: args.body.kakao_name,
+    email: args.body.email,
+    phone: args.body.phone
+  }
+
+  var type = {
+    type_id: getUUID(),
+    type: args.body.type
+  }
+
+  var recruiting = {
+    recr_id: getUUID(),
+    writer_id: writer.writer_id,
+    type_id: type.type_id,
+    comp_id: company.comp_id,
+    title: args.body.title,
+    content: args.body.content,
+    hit: 0,
+    cdate: Sequelize.fn('NOW'),
+    is_delete: 0
+  }
+
+  var detail = {
+    recr_id: recruiting.recr_id,
+    stock_opt: args.body.stock_opt,
+    skill: args.body.skill,
+    url: args.body.url,
+    period: args.body.period,
+    price: args.body.price,
+    years: args.body.years,
+    sector: args.body.sector,
+    from_home: args.body.from_home,
+    more_detail: args.body.more_detail
+  }
+  
+  sequelize.transaction({autocommit:false}).then(function(t) {
+    return Company.create(company, {transaction: t}).then(function(company) {
+      return Writer.create(writer, {transaction: t}).then(function(writer) {
+        return Type.create(type, {transaction: t}).then(function(type) {
+          return Recruiting.create(recruiting, {transaction: t}).then(function(recruiting) {
+            return Detail.create(detail, {transaction: t}).then(function(detail) {
+              t.commit();
+              return res.end(JSON.stringify({status: 'success'}));
+            })
+          })
+        })
+      })
+    }).catch(function(err) {
+      t.rollback();
+      return res.end(JSON.stringify({status: 'error', reason: err}));
+    });
   });
 };
 
 
 // DB Connection For ORM
 exports.getRecruitDetail = function(args, res, next) {
-  res.writeHead(200, {'content-type':'application/json; charset=UTF-8'});
+  res.writeHead(200, {'content-type':'application/json; charset=UTF-8',
+                      'Access-Control-Allow-Origin': '*'});
   var id = args.query.id ? args.query.id : '';
 
   Recruiting.findOne({
@@ -70,3 +127,12 @@ exports.getRecruitList = function(args, res, next) {
     return res.end(JSON.stringify(value));
   });
 };
+
+function getUUID() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4();
+}

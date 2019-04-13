@@ -3,7 +3,7 @@ info:
   version: "0.0.1"
   title: kakao job
 host: localhost:3000
-basePath: /api
+basePath: /
 schemes:
   - http
   - https
@@ -31,85 +31,11 @@ produces:
   - application/json
 paths:
 
-  /login/{role}:
+  /insertRecruiting:
     x-swagger-router-controller: main-controller
     post:
-      operationId: loginPost
-      description: "Login with a particular role"
-      parameters:
-        - name: role
-          in: path
-          required: true
-          type: string
-        - name: authentication
-          in: body
-          required: true
-          schema:
-            $ref: "#/definitions/Authentication"
-      responses:
-        "200":
-          description: "Success"
-          schema:
-            $ref: "#/definitions/Token"
-        "403":
-          description: "Access Denied"
-          schema:
-            $ref: "#/definitions/Error"
-
-  /unprotected:
-    x-swagger-router-controller: main-controller
-    get:
-      operationId: unprotectedGet
-      description: "Unprotected endpoint"
-      responses:
-        "200":
-          description: "Success"
-          schema:
-            $ref: "#/definitions/Resource"
-
-  /protected:
-    x-swagger-router-controller: main-controller
-    get:
-      operationId: protectedGet
-      description: "Protected endpoint, only accessible to 'admins' and 'users'"
-      security:
-        - Bearer: []
-      x-security-scopes:
-        - admin
-        - user
-      responses:
-        "200":
-          description: "Success"
-          schema:
-            $ref: "#/definitions/Resource"
-        "403":
-          description: "Access Denied"
-          schema:
-            $ref: "#/definitions/Error"
-  /protected2:
-    x-swagger-router-controller: main-controller
-    get:
-      operationId: protected2Get
-      description: "Protected endpoint, only accessible to 'admins'"
-      security:
-        - Bearer: []
-      x-security-scopes:
-        - admin
-      responses:
-        "200":
-          description: "Success"
-          schema:
-            $ref: "#/definitions/Resource"
-        "403":
-          description: "Access Denied"
-          schema:
-            $ref: "#/definitions/Error"
-
-  /listInsert:
-    x-swagger-router-controller: main-controller
-    post:
-      operationId: listInsert
-      description: "Insert a list2"
+      operationId: insertRecruiting
+      description: "Insert a Recruiting"
       parameters:
         - name: value
           in: body
@@ -125,6 +51,7 @@ paths:
           description: "Access Denied"
           schema:
             $ref: "#/definitions/Error"
+
 
   /getRecruitDetail:
     x-swagger-router-controller: main-controller
@@ -152,12 +79,60 @@ definitions:
   Authentication:
     type: object
     properties:
-      username:
+      name:
         type: string
-        example: "username"
-      password:
+        example: "test"
+      location:
         type: string
-        example: "password"
+        example: "test"
+      kakao_id:
+        type: string
+        example: "test"
+      kakao_name:
+        type: string
+        example: "test"
+      email:
+        type: string
+        example: "test"
+      phone:
+        type: string
+        example: "test"
+      type:
+        type: string
+        example: "test"
+      title:
+        type: string
+        example: "test"
+      content:
+        type: string
+        example: "test"
+      stock_opt:
+        type: string
+        example: "test"
+      skill:
+        type: string
+        example: "test"
+      url:
+        type: string
+        example: "test"
+      period:
+        type: string
+        example: "test"
+      price:
+        type: string
+        example: "test"
+      years:
+        type: string
+        example: "test"
+      sector:
+        type: string
+        example: "test"
+      from_home:
+        type: string
+        example: "test"
+      more_detail:
+        type: string
+        example: "test"
   Resource:
     type: object
     properties:
