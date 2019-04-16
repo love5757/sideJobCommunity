@@ -7,7 +7,7 @@ export default {
     }
   },
   created () {
-    this.$axios.get('https://jsonplaceholder.typicode.com/posts')
+    this.$axios.get('http://api.chicken-group.co.kr/getRecruitList')
       .then((response) => {
         console.log(response.data + 'HELLLP')
         this.items = response.data
