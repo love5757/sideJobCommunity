@@ -13,8 +13,7 @@ const moment = require('moment');
 
 // Insert Recruiting
 exports.insertRecruiting = function(args, res, next) {
-  res.writeHead(200, {'content-type':'application/json; charset=UTF-8',
-                      'Access-Control-Allow-Origin': '*'});
+  res.writeHead(200, {'content-type':'application/json; charset=UTF-8'});
   
   var company = {
     comp_id: getUUID(),
@@ -82,8 +81,7 @@ exports.insertRecruiting = function(args, res, next) {
 
 // DB Connection For ORM
 exports.getRecruitDetail = function(args, res, next) {
-  res.writeHead(200, {'content-type':'application/json; charset=UTF-8',
-                      'Access-Control-Allow-Origin': '*'});
+  res.writeHead(200, {'content-type':'application/json; charset=UTF-8'});
   var id = args.query.id ? args.query.id : '';
 
   Recruiting.findOne({
@@ -102,8 +100,7 @@ exports.getRecruitDetail = function(args, res, next) {
 
 // DB Connection For ORM
 exports.getRecruitList = function(args, res, next) {
-  res.writeHead(200, {'content-type':'application/json; charset=UTF-8',
-                      'Access-Control-Allow-Origin': '*'});
+  res.writeHead(200, {'content-type':'application/json; charset=UTF-8'});
                       
   var condition = args.query.condition ? args.query.condition : '';
 
