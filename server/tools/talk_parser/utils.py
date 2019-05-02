@@ -3,6 +3,10 @@ import uuid
 def make_uid():
     return str(uuid.uuid4())
 
+def get_month(m):
+    months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    return months.index(m) + 1
+
 def data_reset():
     data = {
     'title' : '',

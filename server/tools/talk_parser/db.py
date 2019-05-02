@@ -208,7 +208,6 @@ def set_rating(con, r_id, merit):
 def save_data(data):
 
     if (len(data['content']) < 150 and data['matched'][0] == 0) or not check_content(data['content']):
-        print(data['content'])
         return
 
     con = make_db_con()

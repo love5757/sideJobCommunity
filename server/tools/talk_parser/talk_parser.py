@@ -1,4 +1,5 @@
 import re
+from utils import get_month
 
 def make_filter(words,last_group=".+"):
     return re.compile("(%s)[ |]?:([| |\-|\=])(%s)" % (words,last_group))
@@ -13,6 +14,16 @@ def find_date(line):
         d = int(date.group(3))
         date = "%4d-%02d-%02d" % (y,m,d)
         return date
+    else :
+        is_date_filter = re.compile("------ (\w+), (\w+) (\d{1,2}), (\d{4}) ------")
+        date = is_date_filter.search(line)
+        if date:
+            y = int(date.group(4))
+            m = get_month(date.group(2))
+            d = int(date.group(3))
+            date = "%4d-%02d-%02d" % (y,m,d)
+            return date
+
     return False
 
 #메세지 시작줄 확인
@@ -30,6 +41,21 @@ def find_msg_start(line):
         time = "%02d:%02d:00" % (h,m)
         start_line = start_line.group(5)
         return name, time, start_line
+    else : #영문 버전 파일일 경우
+        msg_start_filter = re.compile("\[(.*)\] \[(\d{1,2}):(\d{1,2}) (\w{0,2})\] (.*)")
+        start_line = msg_start_filter.match(line)
+        if(start_line):
+            name = start_line.group(1)
+            h = int(start_line.group(2))
+            m = int(start_line.group(3))
+            if start_line.group(4) == 'PM' :
+                h += 12
+            if h == 24:
+                h = 0
+            time = "%02d:%02d:00" % (h,m)
+            start_line = start_line.group(5)
+            return name, time, start_line
+
     return "","",""
 
 def find_ignore_line(line):
@@ -79,7 +105,7 @@ def find_location(line, matched) :
     if location :
         location = location.group(3).lstrip()
         matched[0] += 1
-        return location
+        return location[:149]
 
 def find_work_from_home(line, matched) :
     filter = make_filter("[자|재][ |]*택[ |]*여[ |]*부")
