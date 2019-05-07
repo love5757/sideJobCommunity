@@ -7,7 +7,7 @@ export default {
     }
   },
   created () {
-    this.$axios.get('http://soorokim.duckdns.org:19223/getRecruitList')
+    this.$axios.get('localhost:3000/getRecruitList')
       .then((response) => {
         console.log(response.data + 'HELLLP')
         this.items = response.data
