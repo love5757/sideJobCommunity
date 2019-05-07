@@ -4,9 +4,13 @@ var app = require("express")();
 var swaggerTools = require("swagger-tools");
 var YAML = require("yamljs");
 var auth = require("./api/helpers/auth");
+var cors = require('cors');
 var swaggerConfig = YAML.load("./api/swagger/swagger.yaml");
 
 swaggerTools.initializeMiddleware(swaggerConfig, function(middleware) {
+
+  app.use(cors());
+  
   //Serves the Swagger UI on /docs
   app.use(middleware.swaggerMetadata()); // needs to go BEFORE swaggerSecurity
   

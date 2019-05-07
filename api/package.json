@@ -12,6 +12,7 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "child_process": "^1.0.2",
+    "cors": "^2.8.5",
     "express": "4.12.3",
     "gulp-uglify-es": "^1.0.4",
     "jsonwebtoken": "7.3.0",
