@@ -3,7 +3,7 @@
 <div class="container">
 <div class="item-container">
 		<div class="item-header">
-			<img src="./assets/sample.png" width="300" height="200" />
+			<img src="@/assets/css/sample.png" width="300" height="200" />
 		</div>
 		<div class="item-body">
 			<div class="item-title"> 
@@ -27,7 +27,7 @@
 	</div>	
 	<div class="item-container">
 		<div class="item-header">
-			<img src="./assets/sample.png" width="300" height="200" />
+			<img src="@/assets/css/sample.png" width="300" height="200" />
 		</div>
 		<div class="item-body">
 			<div class="item-title"> 
@@ -64,4 +64,4 @@ export default {
   name: 'chicken-main'
 }
 </script>
-<script src="../scripts/company_data.js"/>
+<script src="@/scripts/company_data.js" scoped/>

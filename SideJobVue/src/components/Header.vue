@@ -1,8 +1,9 @@
 <template>
+<header>
   <div class="wrap">
 		<div class="left-gbn">
-			<img src="./assets/chicken_sidebar.png" width="40px" />
-		</div>
+			<img src="@/assets/css/chicken_sidebar.png" width="40px" />
+        </div>
 
 		<div class="right-search">
 			<input type="" name="" class="right-search-box">
@@ -31,6 +32,7 @@
 			</ul>
 		</div>
 	</div>
+    </header>
 </template>
 
 <script>

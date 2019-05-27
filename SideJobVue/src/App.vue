@@ -1,20 +1,23 @@
 <template>
   <div id="app">
     <div id="header">
-      <header/>
+      <main-header/>
     </div>
     <router-view/>
   </div>
 </template>
 
 <script>
-import header from '../components/Header.vue'
+import header from '@/components/Header.vue'
 
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    'main-header' : header
+  }
 }
 </script>
 
 <style>
-@import '../assets/css/chicken_main.css'
+@import 'assets/css/chicken_main.css'
 </style>
