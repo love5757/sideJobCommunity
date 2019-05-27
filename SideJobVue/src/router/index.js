@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import listView1 from '@/components/listView1'
+
+import chickenMain from '@/components/Chicken_main'
+
 import test from '@/components/test'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
@@ -14,7 +16,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/main'
+      name: 'chicken-main',
+      component: chickenMain
     },
     {
       path: '/main',
