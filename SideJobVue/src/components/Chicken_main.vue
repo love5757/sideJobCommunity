@@ -1,59 +1,34 @@
 <template>
     <div id="app">
-<div class="container">
-<div class="item-container">
-		<div class="item-header">
-			<img src="@/assets/css/sample.png" width="300" height="200" />
+		<div v-for="i in items" :key="i.id"> 
+			<div class="container">
+				<div class="item-container">
+					<div class="item-header">
+						<img src="@/assets/css/sample.png" width="300" height="200" />
+					</div>
+					<div class="item-body">
+						<div class="item-title"> 
+							{{i.title}}
+						</div>
+						<div class="item-content">
+							<div class="" style="width: 30%;float:left;text-align: center;">
+								333 <br> {{i.contents}}
+							</div>
+						<div class="" style="width: 30%;float:left;text-align: center;">
+							333 <br> FOLLOWERS
+						</div>
+						<div class="" style="width: 30%;float:left;text-align: center;">
+							164 <br> FOLLOWING
+						</div>
+					</div>
+					<div class="item-btn-wrap">
+						<button class="item-btn">Detail</button>
+					</div>
+				</div>
+			</div>	
 		</div>
-		<div class="item-body">
-			<div class="item-title"> 
-				안녕하세요 반갑습니다.
-			</div>
-			<div class="item-content">
-				<div class="" style="width: 30%;float:left;text-align: center;">
-					333 <br> POSTS
-				</div>
-				<div class="" style="width: 30%;float:left;text-align: center;">
-					333 <br> FOLLOWERS
-				</div>
-				<div class="" style="width: 30%;float:left;text-align: center;">
-					164 <br> FOLLOWING
-				</div>
-			</div>
-			<div class="item-btn-wrap">
-				<button class="item-btn">Detail</button>
-			</div>
-		</div>
-	</div>	
-	<div class="item-container">
-		<div class="item-header">
-			<img src="@/assets/css/sample.png" width="300" height="200" />
-		</div>
-		<div class="item-body">
-			<div class="item-title"> 
-				안녕하세요 반갑습니다.
-			</div>
-			<div class="item-content">
-				<div class="" style="width: 30%;float:left;text-align: center;">
-					333 <br> POSTS
-				</div>
-				<div class="" style="width: 30%;float:left;text-align: center;">
-					333 <br> FOLLOWERS
-				</div>
-				<div class="" style="width: 30%;float:left;text-align: center;">
-					164 <br> FOLLOWING
-				</div>
-			</div>
-			<div class="item-btn-wrap">
-				<button class="item-btn">Detail</button>
-			</div>
-			
-		</div>
-	</div>	
-
-
-</div>
     </div>
+</div>
 </template>
 <style>
     
@@ -61,7 +36,7 @@
 <script>
 
 export default {
-  name: 'chicken-main'
+  name: 'chickenMain'
 }
 </script>
-<script src="@/scripts/company_data.js" scoped/>
+<script src="@/scripts/company_data.js"/>

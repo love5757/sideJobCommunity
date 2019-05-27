@@ -1,5 +1,6 @@
+
 export default {
-  name: 'listView1',
+  name: 'chickenMain',
   data () {
     return {
       items: [],

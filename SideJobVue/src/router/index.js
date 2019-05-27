@@ -14,7 +14,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'chicken-main',
+      name: 'chickenMain',
       component: chickenMain
     },
     {

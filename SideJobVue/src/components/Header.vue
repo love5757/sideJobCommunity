@@ -12,22 +12,10 @@
 		<div class="right-gbn">
 			<ul >
 				<li class="selected">
-					WEB
+					정거장
 				</li>
 				<li>
-					IMAGES
-				</li>
-				<li>
-					VIDEOS
-				</li>
-				<li>
-					CHATTING
-				</li>
-				<li>
-					NEWS
-				</li>
-				<li>
-					ABOUT
+					구인구직
 				</li>
 			</ul>
 		</div>
