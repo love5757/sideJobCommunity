@@ -12,7 +12,7 @@
 						</div>
 						<div class="item-content">
 							<div class="" style="width: 30%;float:left;text-align: center;">
-								333 <br> {{i.contents}}
+								333 <br> LIKES
 							</div>
 						<div class="" style="width: 30%;float:left;text-align: center;">
 							333 <br> FOLLOWERS
@@ -20,9 +20,12 @@
 						<div class="" style="width: 30%;float:left;text-align: center;">
 							164 <br> FOLLOWING
 						</div>
-					</div>
-					<div class="item-btn-wrap">
-						<button class="item-btn">Detail</button>
+						<div class="item-content-detail">
+							{{i.content}}	
+						</div>
+						<div class="item-btn-wrap">
+							<button class="item-btn">Detail</button>
+						</div>
 					</div>
 				</div>
 			</div>	
@@ -30,13 +33,18 @@
     </div>
 </div>
 </template>
-<style>
-    
-</style>
 <script>
 
 export default {
-  name: 'chickenMain'
+  name: 'chickenMain',
+  data () {
+    return {
+      items: [
+		  {contents: 'item'}
+	  ]
+    }
+}
 }
 </script>
-<script src="@/scripts/company_data.js"/>
+<script src="../scripts/company_data.js"/>
+
