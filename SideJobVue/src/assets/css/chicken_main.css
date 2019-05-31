@@ -85,6 +85,7 @@ header {
 
 .container{
     width: 100%;
+    padding: 0;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -113,12 +114,12 @@ header {
 }
 .item-btn{
     width: 240px;
-      height: 31px;
-      border-radius: 2px;
-      box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
-      background-color: #7986cb;
-      cursor: pointer;
-      margin:10px auto;
+    height: 31px;
+    border-radius: 2px;
+    box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
+    background-color: #7986cb;
+    cursor: pointer;
+    margin:10px auto;
 }
 
 .item-title{
@@ -158,6 +159,4 @@ header {
     -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
     padding: 7px;
-    
-
 }

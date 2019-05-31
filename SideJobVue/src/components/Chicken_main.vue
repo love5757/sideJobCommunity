@@ -1,24 +1,24 @@
 <template>
-    <div id="app">
-		<div v-for="i in items" :key="i.id"> 
-			<div class="container">
-				<div class="item-container">
-					<div class="item-header">
-						<img src="@/assets/css/sample.png" width="300" height="200" />
+	<div id="app">
+	<div v-for="i in items" :key="i.id"> 
+		<div class="container">
+			<div class="item-container">
+				<div class="item-header">
+					<img src="@/assets/css/sample.png" width="300" height="200" />
+				</div>
+				<div class="item-body">
+					<div class="item-title"> 
+						{{i.title}}
 					</div>
-					<div class="item-body">
-						<div class="item-title"> 
-							{{i.title}}
-						</div>
-						<div class="item-content">
-							<div class="" style="width: 30%;float:left;text-align: center;">
-								333 <br> LIKES
-							</div>
+					<div class="item-content">
 						<div class="" style="width: 30%;float:left;text-align: center;">
-							333 <br> FOLLOWERS
+							0 <br> LIKES
 						</div>
 						<div class="" style="width: 30%;float:left;text-align: center;">
-							164 <br> FOLLOWING
+							0 <br> FOLLOWERS
+						</div>
+						<div class="" style="width: 30%;float:left;text-align: center;">
+							0 <br> FOLLOWING
 						</div>
 						<div class="item-content-detail">
 							{{i.content}}	
@@ -30,8 +30,8 @@
 				</div>
 			</div>	
 		</div>
-    </div>
-</div>
+	</div>
+	</div>
 </template>
 <script>
 
