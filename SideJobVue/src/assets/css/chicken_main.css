@@ -132,6 +132,7 @@ header {
     text-overflow: ellipsis;
     line-height: 1.2;
     height: 3.0em;
+    font-weight: bold;
 
 
 }
