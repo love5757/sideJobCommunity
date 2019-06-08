@@ -151,3 +151,10 @@ header {
     -webkit-box-orient: vertical;
     padding: 7px;
 }
+
+.left-length {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: #fff;
+}

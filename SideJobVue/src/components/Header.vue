@@ -15,14 +15,16 @@
 				</li>
 			</ul>
 		</div>
-	</div>
-	<div class="left-length">
-		length
+		<div class="left-length">
+			총 개수 : {{listTotalLength}}
+		</div>
 	</div>
 </header>
 </template>
 
 <script>
+import { eventBus } from '../main.js';
+
 export default {
   name: 'main-header',
 	methods: {
@@ -39,11 +41,16 @@ export default {
 				}
 			});
     }
-  },
-	data () {
+	},
+	data: function() {
 	return {
-			length: 0
+			listTotalLength: 0
 		}
+	},
+	created() {
+		eventBus.$on('listChange', (length) => {
+			this.listTotalLength = length;
+		});
 	}
 }
 
