@@ -5,7 +5,6 @@ var chicken = new Object();
     JSON.stringify(chicken);
 
     new Vue({
-
         el: '#app',
         data: chicken
     })

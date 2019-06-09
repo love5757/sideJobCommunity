@@ -52,4 +52,3 @@ li {
     min-height:10vh !important;
 }
 </style>
-<script src="../scripts/company_data.js"/>

@@ -21,7 +21,6 @@ export default new Router({
       path: '/main',
       name: 'listView1',
       component: listView1
-
     }
   ]
 })
