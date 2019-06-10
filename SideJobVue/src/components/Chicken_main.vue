@@ -1,9 +1,11 @@
 <template>
 	<div id="app" style="text-align: center;">
-		<div class="container" v-for="i in items" :key="i.id">
+		<div class="container" v-for="(i,idx) in items" :key="i.id">
 			<div class="item-container">
+				<input type="text" :value="makeImage(idx)">
 				<div class="item-header">
-					<img src="@/assets/css/sample.png" width="300" height="200" />
+					{{idx}} {{makeImage(idx)}}
+					<img :src="makeImage(idx)" width="300" height="200" />
 				</div>
 				<div class="item-body">
 					<div class="item-title"> 
@@ -34,7 +36,7 @@ export default {
   data: function () {
     return {
       items: [],
-      img_src: 'http://www.urbanbrush.net/web/wp-content/uploads/edd/2018/02/web-20180211134119206041.png'
+      img_src: ''
     }
   },
   created () {
@@ -42,12 +44,20 @@ export default {
       .then((response) => {
         this.items = response.data
         eventBus.$emit('listChange', this.items.length);
-      })
+			})
   },
   methods: {
 		viewCount: function(id) {
 			console.log(id);
-    }
+		},
+
+		makeImage: function(idx) {
+			var img = ['@/assets/img/1.jpg','@/assets/img/2.jpg','@/assets/img/3.jpg','@/assets/img/4.jpg','@/assets/img/5.jpg',
+			'@/assets/img/6.jpg','@/assets/img/7.jpg', '@/assets/img/8.jpg', '@/assets/img/9.jpg', '@/assets/img/10.jpg']
+			var index = (idx % 10)
+			console.log(img[index], typeof img[index])
+			return img[index]
+		}
 	}
 }
 </script>
