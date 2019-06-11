@@ -7,10 +7,10 @@
 
 		<div class="right-gbn">
 			<ul>
-				<li class="selected">
+				<li >
 					정거장
-				</li>
-				<li>
+				</li >
+				<li class="selected">
 					구인구직
 				</li>
 			</ul>
