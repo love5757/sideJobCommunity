@@ -196,3 +196,15 @@ header {
 .hidden {
   display: none;
 }
+
+.site-title > a{
+  float: left;
+  text-decoration: none;
+  left : 5%;
+  color: white;
+}
+
+.chicken-station > iframe {
+  width : 100%;
+  height : 100vh;
+}

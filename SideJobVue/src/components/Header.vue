@@ -1,18 +1,24 @@
 <template>
 <header>
   <div class="wrap">
+		<div class="site-title">
+      <router-link :to="{ path: '/'}">
+      <h1>치킨 그룹</h1>
+      <h3>Chicken Group</h3>
+      </router-link>
+		</div>
 		<div class="right-search">
 			<input type="" name="" class="right-search-box" v-on:change="search" v-on:keyup="search">
 		</div>
 
 		<div class="right-gbn">
 			<ul>
-				<li >
-					정거장
-				</li >
-				<li class="selected">
-					구인구직
-				</li>
+				<li class="recruite selected" @click="select('recruite')">
+            구인구직
+        </li>
+        <li class="station" @click="select('station')">
+            정거장
+        </li>
 			</ul>
 		</div>
 		<div class="left-length">
@@ -40,6 +46,26 @@ export default {
 					element.style.display = "none";
 				}
 			});
+    },
+    select (menu){
+      let menuBtn = document.querySelector('.'+menu)
+      let recCnt = document.querySelector('.left-length')
+      let search = document.querySelector('.right-search')
+      menuBtn.classList.add('selected')
+      if (menu=='recruite'){
+        let stationBtn = document.querySelector('.station')
+        stationBtn.classList.remove('selected')
+        recCnt.style.display = "inline-block"
+        search.style.display = "inline-block"
+        this.$router.push({name: menu})
+      } else {
+        let recruiteBtn = document.querySelector('.recruite')
+        recruiteBtn.classList.remove('selected')
+        recCnt.style.display = "none"
+        search.style.display = "none"
+        this.$router.push({name: menu})
+      }
+      return
     }
 	},
 	data: function() {
