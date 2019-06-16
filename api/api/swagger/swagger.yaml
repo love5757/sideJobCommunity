@@ -2,8 +2,8 @@ swagger: "2.0"
 info:
   version: "0.0.1"
   title: kakao job
-#host: soorokim.duckdns.org:19223
-host: localhost:3000
+host: soorokim.duckdns.org:19223
+#host: localhost:3000
 basePath: /
 schemes:
   - http

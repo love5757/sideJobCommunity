@@ -11,7 +11,7 @@
 					</div>
 					<div class="item-content">
 						<div style="text-align: center; height: 28px">
-							{{i.view}} <br> VIEW
+							{{i.hit}} <br> VIEW
 						</div>
 						<div class="item-content-detail">
 							{{i.content}}
@@ -100,6 +100,10 @@ export default {
 												   ${item.content}`
 			this.detailItem = item
 			this.detailIdx = idx
+			
+			this.$axios.post('http://soorokim.duckdns.org:19223/updateHit', {
+				recr_id: item.recr_id
+			});
 		},
 		CloseDetailModal: function() {
 			const modal = this.$refs.modal;

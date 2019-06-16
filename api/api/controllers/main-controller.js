@@ -132,7 +132,7 @@ exports.getRecruitList = function(args, res, next) {
   cdateCondition = moment(cdateCondition.getFullYear() + '-' + (cdateCondition.getMonth() + 1) + '-' + cdateCondition.getDate(), 'YYYY-MM-DD');
   
   Recruiting.findAll({
-    attributes: ['recr_id', 'title', 'content', 'hit', 'cdate', 'udate', 'ddate', 'is_delete'],
+    attributes: ['recr_id', 'title', 'hit', 'cdate', 'udate', 'ddate', 'is_delete', [Sequelize.literal('replace(content, char(13), "\n")'), 'content']],
     where:{
       cdate: {
         [Op.gte]: cdateCondition
