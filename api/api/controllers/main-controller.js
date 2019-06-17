@@ -127,7 +127,7 @@ exports.getRecruitList = function(args, res, next) {
   
   var condition = args.query.condition ? args.query.condition : '';
 
-  const beforeDay = 60;
+  const beforeDay = 180;
   var cdateCondition = new Date(Date.parse(new Date()) - beforeDay * 1000 * 60 * 60 * 24);
   cdateCondition = moment(cdateCondition.getFullYear() + '-' + (cdateCondition.getMonth() + 1) + '-' + cdateCondition.getDate(), 'YYYY-MM-DD');
   
