@@ -35,17 +35,21 @@ export default {
   name: 'main-header',
 	methods: {
     search: function (event) {
-			let value = event.target.value;
-			let pattern = new RegExp('.*' + value + '.*');
-			let list = this.$parent.$el.querySelectorAll('.container');
+		let value = event.target.value;
+		let pattern = new RegExp('.*' + value + '.*');
+		let list = this.$parent.$el.querySelectorAll('.container');
+		let count = 0;
 
-			list.forEach(element => {
-				if(pattern.test(element.querySelector('.item-title').textContent)) {
-					element.style.display = "inline-block";
-				} else {
-					element.style.display = "none";
-				}
-			});
+		list.forEach(element => {
+			if(pattern.test(element.querySelector('.item-title').textContent)) {
+				count++;
+				element.style.display = "inline-block";
+			} else {
+				element.style.display = "none";
+			}
+		});
+		
+		this.listTotalLength = count;
     },
     select (menu){
       let menuBtn = document.querySelector('.'+menu)
