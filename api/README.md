@@ -11,6 +11,19 @@
 5) POST `http://localhost:3000/insertRecruiting` with the following body
 ````
 {
+  "recr_id" : {id}
+}
+````
+
+6) POST `http://localhost:3000/updateHit` with the following body
+````
+{
+  "recr_id" : {id}
+}
+````
+
+````
+{
   "name": "test",
   "location": "test",
   "kakao_id": "test",

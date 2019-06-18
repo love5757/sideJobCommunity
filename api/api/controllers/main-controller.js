@@ -79,6 +79,29 @@ exports.insertRecruiting = function(args, res, next) {
 };
 
 
+// Update View
+exports.updateHit = function(args, res, next) {
+  res.writeHead(200, {'content-type':'application/json; charset=UTF-8;'});
+  var id = args.body.recr_id;
+
+  Recruiting.findOne({
+    attributes: ['hit'],
+    where:{
+      recr_id: id
+    }
+  }).then((value) => {
+    Recruiting.update({
+      hit: value.hit + 1
+    }, {
+      where: { recr_id: id }
+    })
+    .then(() => {
+      return res.end(JSON.stringify({status: 'success'}));
+    });
+  });
+};
+
+
 // DB Connection For ORM
 exports.getRecruitDetail = function(args, res, next) {
   res.writeHead(200, {'content-type':'application/json; charset=UTF-8'});
@@ -101,15 +124,15 @@ exports.getRecruitDetail = function(args, res, next) {
 // DB Connection For ORM
 exports.getRecruitList = function(args, res, next) {
   res.writeHead(200, {'content-type':'application/json; charset=UTF-8'});
-                      
+  
   var condition = args.query.condition ? args.query.condition : '';
 
-  const beforeDay = 60;
+  const beforeDay = 180;
   var cdateCondition = new Date(Date.parse(new Date()) - beforeDay * 1000 * 60 * 60 * 24);
   cdateCondition = moment(cdateCondition.getFullYear() + '-' + (cdateCondition.getMonth() + 1) + '-' + cdateCondition.getDate(), 'YYYY-MM-DD');
   
   Recruiting.findAll({
-    attributes: ['recr_id', 'title', 'content', 'hit', 'cdate', 'udate', 'ddate', 'is_delete'],
+    attributes: ['recr_id', 'title', 'hit', 'cdate', 'udate', 'ddate', 'is_delete', [Sequelize.literal('replace(content, char(13), "\n")'), 'content']],
     where:{
       cdate: {
         [Op.gte]: cdateCondition

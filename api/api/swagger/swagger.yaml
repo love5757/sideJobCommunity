@@ -2,7 +2,8 @@ swagger: "2.0"
 info:
   version: "0.0.1"
   title: kakao job
-host: api.chicken-group.co.kr
+host: soorokim.duckdns.org:19223
+#host: localhost:3000
 basePath: /
 schemes:
   - http
@@ -41,6 +42,28 @@ paths:
     post:
       operationId: insertRecruiting
       description: "Insert a Recruiting"
+      parameters:
+        - name: value
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/Authentication"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Token"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+
+
+  /updateHit:
+    x-swagger-router-controller: main-controller
+    post:
+      operationId: updateHit
+      description: "Update Hit"
       parameters:
         - name: value
           in: body
