@@ -24,6 +24,12 @@
 		<div class="left-length">
 			총 개수 : {{listTotalLength}}
 		</div>
+		<div class="right-info" @click="popup()">
+      안<span class="popuptext" id="myPopup">
+        본 데이터는 치킨모임 </br>사이드잡방의 데이터를 가지고</br> 서비스 되고 있습니다.</br>
+        사이드잡방 접속을 원하시면</br>카톡 아이디 [innovationo]로</br>1:1 신청 하면 됩니다.
+      </span>내
+		</div>
 	</div>
 </header>
 </template>
@@ -48,7 +54,7 @@ export default {
 				element.style.display = "none";
 			}
 		});
-		
+
 		this.listTotalLength = count;
     },
     select (menu){
@@ -70,7 +76,12 @@ export default {
         this.$router.push({name: menu})
       }
       return
+    },
+    popup(){
+      let popup = document.querySelector("#myPopup");
+      popup.classList.toggle("show");
     }
+
 	},
 	data: function() {
 	return {

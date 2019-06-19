@@ -17,7 +17,7 @@
 							{{i.content}}
 						</div>
 						<div class="item-btn-wrap">
-							<button @click="ShowDetailModal(i,idx)" class="item-btn detail">Detail</button>
+							<button @click="ShowDetailModal(i,idx)" class="item-btn detail-btn">Detail</button>
 						</div>
 					</div>
 				</div>
@@ -25,23 +25,23 @@
 		</div>
 		<div class="modal hidden" ref="modal">
 			<div class="modal__overlay"></div>
-				<div class="item-container detail">
-					<div class="item-header">
-						<img :src="makeImage(detailIdx)" width="300" height="200" />
+				<div class="detail-container detail">
+					<div class="detail-header">
+						<img :src="makeImage(detailIdx)" width="450" height="300" />
 					</div>
-					<div class="item-body">
-						<div class="item-title">
+					<div class="detail-body">
+						<div class="detail-title">
 							{{detailItem.title}}
 						</div>
-						<div class="item-content">
+						<div class="detail-content">
 							<div style="text-align: center; height: 28px">
-								{{detailItem.view}} <br> VIEW
+								{{detailItem.hit}} <br> VIEW
 							</div>
-							<div class="item-content-detail more-detail">
+							<div class="detail-content-detail">
 								{{detailText}}
 							</div>
-							<div class="item-btn-wrap">
-								<button @click="CloseDetailModal()" class="item-btn close">Close</button>
+							<div class="detail-btn-wrap">
+								<button @click="CloseDetailModal()" class="item-btn close-btn">Close</button>
 							</div>
 						</div>
 				</div>
@@ -100,7 +100,7 @@ export default {
 												   ${item.content}`
 			this.detailItem = item
 			this.detailIdx = idx
-			
+
 			this.$axios.post('http://soorokim.duckdns.org:19223/updateHit', {
 				recr_id: item.recr_id
 			});
