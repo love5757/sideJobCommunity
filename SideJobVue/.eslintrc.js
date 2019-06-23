@@ -1,12 +1,12 @@
 // https://eslint.org/docs/user-guide/configuring
 
 module.exports = {
-  root: true,
+  root: false,
   parserOptions: {
     parser: 'babel-eslint'
   },
   env: {
-    browser: true,
+    browser: false,
   },
   extends: [
     // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
