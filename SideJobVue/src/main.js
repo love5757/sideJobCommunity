@@ -4,12 +4,22 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
+import vueAnalytics from 'vue-analytics'
 
-export const eventBus = new Vue();
+export const eventBus = new Vue()
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 /* eslint-disable no-new */
+
+Vue.use(vueAnalytics, {
+  id : 'UA-142334436-1',
+  router,
+  autoTracking: {
+    pageviewOnLoad : false
+  }
+})
+
 new Vue({
   el: '#app',
   router,
