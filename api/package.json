@@ -21,7 +21,7 @@
     "pm2": "^3.4.1",
     "sequelize": "^5.1.0",
     "swagger-tools": "0.10.1",
-    "validator": "7.0.0",
+    "validator": "13.7.0",
     "watchify": "^3.11.1",
     "yamljs": "0.2.9"
   },
